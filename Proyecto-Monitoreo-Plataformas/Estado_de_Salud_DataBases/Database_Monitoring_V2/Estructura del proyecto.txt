@@ -1,0 +1,14 @@
+health-check-oracle/
+├── config/
+│   ├── config.yaml
+│   └── validations.json
+├── sql/
+│   ├── filesystem_checks.sql
+│   ├── instance_uptime.sql
+│   └── other_checks.sql
+├── src/
+│   ├── main.py
+│   ├── db_connector.py
+│   ├── validator.py
+│   └── email_sender.py
+└── README.md

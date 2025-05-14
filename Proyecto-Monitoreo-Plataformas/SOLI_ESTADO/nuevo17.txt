@@ -1,0 +1,40 @@
+1. definir el alcance de Monitoreo:
+
+Servicios de Sistema Operativo:
+	CPU, MEMORIA y FILESYSTEM.
+	
+Bases de Datos: 
+	validar conexion a la BD, invalidos, sesiones Activas y INACTIVAS.
+	
+app: 
+	weblogic, Tomcat y Nginx. 
+	
+2. Elegir Herramientas de Monitoreo:
+	Bash o Python Scripts: Para realizar chequeos personalizados en el SO y BD.
+	
+3. Automatización de Validaciones:
+	Utilizar herramientas como Cron (Linux)
+	
+4. Generación de Reporte .html:
+	librerías específicas en Python para generar HTML (por ejemplo, jinja2 para plantillas).
+	
+5. Envío de Reporte por Correo Electrónico:
+	Python (smtplib).
+	
+	
+
+
+en .hmtl quiero que se muestre algo asi:
+
+Titulo: Estado de Salud servidores
+
+Servidor   	CPU		memoria		filesystem		BD			App(Tomcat, Nginx o Weblogic)
+
+ip1			okay	okay		Fallido			okay		N/A 
+
+ip2			okay	fallido		okay			N/A		 	okay
+
+ip3			fallido	okay		okay			okay		N/A 
+
+ip4			okay	okay		okay			N/A		 	okay
+	

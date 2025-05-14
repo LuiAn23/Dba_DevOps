@@ -1,0 +1,23 @@
+Ambiente de calidad: 192.168.201.111 base de datos REGIDESA
+
+Crear datasource : jdbc/RUEPNF_CL
+
+Usuario: INTRNT2
+
+Password: INTRNT2
+
+Tamaño inicial: 1
+
+Tamaño final : 1000
+
+Nota: este mismo crearlo en base de datos de desarrollo REGIDESA
+
+
+\\WINVMWAPNAS01\ComiteCambiosTOP\2_Prod\2025\ACR-MallaValidación--   CH_TI_45699
+ 
+\\WINVMWAPNAS01\ComiteCambiosTOP\2_Prod\2024\ACR-ActulizacionDatos-  CH_TI_42959
+ 
+ 
+ 
+cp /pdf/rues/formularios/08/formulario_rues_final_2_est_2_FE_24_118048_RN0825TFPM-20250210110545.pdf /tmp
+cp /pdf/rues/formularios/08/formulario_rues_final_2_est_2_FE_24_118048_RN0825TFPM-20250210110630.pdf /tmp

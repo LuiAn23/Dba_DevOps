@@ -1,0 +1,197 @@
+SET LINESIZE 200
+SET PAGESIZE 100
+COLUMN START_TIME FORMAT A20
+COLUMN END_TIME FORMAT A20
+COLUMN BACKUP_TYPE FORMAT A15
+COLUMN STATUS FORMAT A10
+COLUMN ELAPSED_TIME FORMAT A15
+COLUMN BACKUP_SIZE_GB FORMAT A10000000000000000000000000000000000
+COLUMN OUTPUT_DEVICE FORMAT A20
+
+SELECT INPUT_TYPE "BACKUP_TYPE",
+       STATUS,
+       TO_CHAR(START_TIME, 'MM/DD/YYYY:HH24:MI:SS') as START_TIME,
+       TO_CHAR(END_TIME, 'MM/DD/YYYY:HH24:MI:SS') as END_TIME,
+       TRUNC((ELAPSED_SECONDS/60), 2) "ELAPSED_TIME(Min)",
+       ROUND(OUTPUT_BYTES/1024/1024/1024, 2) "BACKUP_SIZE_GB",
+       OUTPUT_DEVICE_TYPE "OUTPUT_DEVICE"
+FROM V$RMAN_BACKUP_JOB_DETAILS
+WHERE START_TIME > SYSDATE - 10
+ORDER BY END_TIME DESC;
+SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL>   2    3    4    5    6    7    8    9   10  
+BACKUP_TYPE    |STATUS	  |START_TIME	       |END_TIME	    |ELAPSED_TIME(Min)|BACKUP_SIZE_GB|OUTPUT_DEVICE
+---------------|----------|--------------------|--------------------|-----------------|--------------|--------------------
+ARCHIVELOG     |COMPLETED |02/24/2025:05:00:05 |02/24/2025:05:02:27 |		  2,36|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/23/2025:19:00:06 |02/23/2025:19:03:41 |		  3,58|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/23/2025:05:00:05 |02/23/2025:05:03:15 |		  3,16|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/22/2025:19:00:08 |02/22/2025:19:04:00 |		  3,86|    ##########|DISK
+DB INCR        |COMPLETED |02/21/2025:17:00:04 |02/22/2025:15:20:35 |	       1340,51|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/22/2025:05:00:05 |02/22/2025:05:03:25 |		  3,33|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/21/2025:19:00:11 |02/21/2025:19:04:47 |		   4,6|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/21/2025:05:00:05 |02/21/2025:05:03:03 |		  2,96|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/20/2025:19:00:06 |02/20/2025:19:04:23 |		  4,28|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/20/2025:05:00:05 |02/20/2025:05:03:21 |		  3,26|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/19/2025:19:00:06 |02/19/2025:19:04:14 |		  4,13|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/19/2025:05:00:05 |02/19/2025:05:03:13 |		  3,13|    ##########|DISK
+DB INCR        |COMPLETED |02/18/2025:18:00:03 |02/18/2025:19:40:28 |		100,41|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/18/2025:19:00:07 |02/18/2025:19:04:04 |		  3,95|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/18/2025:05:00:04 |02/18/2025:05:02:39 |		  2,58|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/17/2025:19:00:07 |02/17/2025:19:03:13 |		   3,1|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/17/2025:05:00:04 |02/17/2025:05:02:25 |		  2,35|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/16/2025:19:00:08 |02/16/2025:19:04:18 |		  4,16|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/16/2025:05:00:05 |02/16/2025:05:02:45 |		  2,66|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/15/2025:19:00:08 |02/15/2025:19:03:31 |		  3,38|    ##########|DISK
+DB INCR        |COMPLETED |02/14/2025:17:00:05 |02/15/2025:14:50:40 |	       1310,58|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/15/2025:05:00:04 |02/15/2025:05:02:52 |		   2,8|    ##########|DISK
+ARCHIVELOG     |COMPLETED |02/14/2025:19:00:09 |02/14/2025:19:04:44 |		  4,58|    ##########|DISK
+
+23 filas seleccionadas.
+
+SQL> 
+SQL> 
+
+
+
+
+sh /home/sisadmin/check_service.sh >> /home/sisadmin/check_service.log 2>&1
+
+
+
+Los servidores de Bases de datos son los siguientes y como seria el proceso ingresar servidores fucturos : 
+
+
+# Configuración de la base de datos Oracle
+ORACLE_HOST=localhost
+ORACLE_PORT=1521
+ORACLE_SID=XE
+ORACLE_USER=tu_usuario
+ORACLE_PASSWORD=tu_contraseña
+
+
+ip: 192.168.202.4 SID:REGISTRO puerto: 1521
+ip: 192.168.202.3 SID:ERP 	puerto: 1641
+ip: 192.168.202.2 SID:DOCUNET	puerto: 1521
+
+Todos van utilizar el mismo usuario y contraseña.
+usuario: system
+contraseña: ZSbooyioUkE1tlFT3NY2
+
+
+
+
+
+
+
+
+Quiero mejorar sistema que validad el estado de salud de los servidores de App. 
+
+para que me envie un correo con las validadaciones de todos los servidores.
+
+que me envie en el cuerpo del correo una tabla con colores verdes(Exitoso), amarillos(no aplica o error controlado) y rojo(Fallido).
+
+la tabla puede tener las siguientes columnas:
+
+SERVIDOR 	FILESYSTEM		CPU		MEMORIA		servivios App (Weblogic, GlassFish, Tomcat o Nginx)  	URL
+
+Que me adjunte en log de la ejecuccion. 
+
+que tenga posiblidad de agregar mas servidores a futuro o mas validadaciones.
+
+yo tego lo siguiente pero lo quiero mas estrecturado. 
+
+
+
+(venv) [sisadmin@coclocccprdl16 Monitoring]$ cat check_service.sh
+#!/bin/bash
+
+# Servidores a verificar
+SERVERS=("192.168.202.148" "192.168.202.149")
+SERVICE_NAME="java"
+LOG_FILE="/home/sisadmin/sta.log"
+SERVICE_STATUS_LOG="/home/sisadmin/service_status.log"
+URL1="http://192.168.202.148:5050/svi/08/inicio"
+URL2="http://192.168.202.149:5050/svi/08/inicio"
+MAIL_SUBJECT="Estado de Salud de los servicios y URL"
+MAIL_TO="luis.orobio@sisa.com.co"
+MAIL_CC="mgonzale@ccc.org.co,fjaramillo@ccc.org.co,wimunoz@ccc.org.co"
+MAIL_BODY="La validación del servicio y las URL se ha realizado. Adjunto se encuentran los logs con los detalles."
+
+# Vaciar los archivos de logs al inicio de cada ejecución
+> $LOG_FILE
+> $SERVICE_STATUS_LOG
+
+function check_service {
+  local SERVER=$1
+  ssh -o StrictHostKeyChecking=no $SERVER "bash -c 'ps -fea | grep -v grep | grep $SERVICE_NAME > /dev/null'"
+  if [ $? -eq 0 ]; then
+    echo "`date`: El servicio $SERVICE_NAME está arriba en el servidor $SERVER" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está arriba en el servidor $SERVER" >> $SERVICE_STATUS_LOG
+  else
+    echo "`date`: El servicio $SERVICE_NAME está abajo en el servidor $SERVER" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está abajo en el servidor $SERVER" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+function check_url {
+  local URL=$1
+  curl -s --head $URL | head -n 1 | grep "HTTP/1.[01] [23].." > /dev/null
+  if [ $? -eq 0 ]; then
+    echo "`date`: La URL $URL está accesible" >> $LOG_FILE
+    echo "`date`: La URL $URL está accesible" >> $SERVICE_STATUS_LOG
+  else
+    echo "`date`: La URL $URL no está accesible" >> $LOG_FILE
+    echo "`date`: La URL $URL no está accesible" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+# Ejecutar funciones para cada servidor
+for SERVER in "${SERVERS[@]}"; do
+  check_service $SERVER
+done
+
+# Verificar URLs
+check_url $URL1
+check_url $URL2
+
+# Enviar correo con los logs usando sendmail
+(
+echo "Subject: $MAIL_SUBJECT"
+echo "To: $MAIL_TO"
+echo "Cc: $MAIL_CC"
+echo ""
+echo "$MAIL_BODY"
+cat $LOG_FILE
+cat $SERVICE_STATUS_LOG
+) | sendmail -t
+(venv) [sisadmin@coclocccprdl16 Monitoring]$ 
+
+
+
+1. 	Estructura del Proyecto
+2.	Configuración del Entorno
+3.	Instalación de Dependencias
+4.	Script Principal (main.py)
+5.	Plantilla HTML (reporte.html)
+6.	Archivo de Configuración (config.ini)
+7.	Configuración de Variables de Entorno
+8.	Programación con Cron
+9.	Notas Importantes
+10.	Pasos Finales y Pruebas
+
+
+
+
+
+scp renonacional.firma-1.0.2.war sisadmin@192.168.202.109:/u01/deploy
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+SERVICE_NAME="java"
+LOG_FILE="/app/bin/sta.log"
+SERVICE_STATUS_LOG="/app/bin/service_status.log"
+URL1="http://192.168.202.148:5050/svi/08/inicio"
+URL2="http://192.168.202.149:5050/svi/08/inicio"
+MAIL_RECIPIENT="luis.orobio@sisa.com.co"
+MAIL_SUBJECT="Resultado de la validación del servicio y URL"
+MAIL_BODY="La validación del servicio y las URL se ha realizado. Adjunto se encuentran los logs con los detalles."
+
+function check_service {
+  ps ax | grep -v grep | grep $SERVICE_NAME > /dev/null
+  if [ $? -eq 0 ]; then
+    echo "1" > /tmp/service_status
+    echo "`date`: El servicio $SERVICE_NAME está arriba" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está arriba" >> $SERVICE_STATUS_LOG
+  else
+    echo "0" > /tmp/service_status
+    echo "`date`: El servicio $SERVICE_NAME está abajo" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está abajo" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+function check_url {
+  local URL=$1
+  curl -s --head $URL | head -n 1 | grep "HTTP/1.[01] [23].." > /dev/null
+  if [ $? -eq 0 ]; then
+    echo "`date`: La URL $URL está accesible" >> $LOG_FILE
+  else
+    echo "`date`: La URL $URL no está accesible" >> $LOG_FILE
+  fi
+}
+
+# Ejecutar funciones
+check_service
+check_url $URL1
+check_url $URL2
+
+# Enviar correo con los logs
+echo "$MAIL_BODY" | mail -s "$MAIL_SUBJECT" -a $LOG_FILE -a $SERVICE_STATUS_LOG $MAIL_RECIPIENT

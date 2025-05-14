@@ -1,0 +1,17 @@
+En Secretaría de Gobierno (Primer piso CIAC) se expedirá el recibo correspondiente al pago del Certificado de Residencia Código 1157 por valor de $16.473 pesos, el cual deberá ser cancelado en la entidad bancaria autorizada.
+Pago de estampillas por valor de $15.600 pesos, segundo piso Cooperativa Coopser (frente al banco AvVillas) o pago virtual en la página de la Gobernación del Valle (debe consultar por internet). El pago debe realizarse a nombre de la persona que solicita el certificado.
+Fotocopia de la cédula de ciudadanía
+Si es propietario de la vivienda, adjuntar fotocopia de un recibo de servicio público domiciliario (agua, energía, teléfono o gas). b) Si reside en vivienda familiar, que el recibo se encuentre a nombre de los padres y/o familiar, c) Si vive en casa arrendada, copia del contrato de arrendamiento.
+Diligenciamiento del formato de declaración juramentada que facilita la Alcaldía.
+
+
+
+scp renovacion2.0 renonacional.formulario renonacional.firma renonacional.descarga renonacional.pago dominios2.0
+
+scp renovacion2.0.war renonacional.formulario-1.0.5.war renonacional.firma-1.0.0.war renonacional.descarga-1.0.0.war renonacional.pago-1.0.2.war dominios.ws-2.1.0.war sisadmin@192.168.201.239:/tmp
+
+renovacion2.0.war
+renonacional.formulario-1.0.0.war
+renonacional.firma-1.0.0.war
+renonacional.descarga-1.0.0.war
+renonacional.pago-1.0.2.war

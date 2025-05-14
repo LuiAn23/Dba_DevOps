@@ -1,0 +1,198 @@
+
+##################		vi check_service_daily.sh
+
+#!/bin/bash
+
+# Servidores a verificar
+SERVERS=("192.168.202.148" "192.168.202.149")
+SERVICE_NAME="java"
+LOG_FILE="/home/sisadmin/sta.log"
+SERVICE_STATUS_LOG="/home/sisadmin/service_status.log"
+URL1="http://192.168.202.148:5050/svi/08/inicio"
+URL2="http://192.168.202.149:5050/svi/08/inicio"
+MAIL_SUBJECT="Resultado de la validación del servicio y URL"
+MAIL_TO="luis.orobio@sisa.com.co"
+MAIL_CC="mgonzale@ccc.org.co,fjaramillo@ccc.org.co"
+MAIL_BODY="La validación del servicio y las URL se ha realizado. Adjunto se encuentran los logs con los detalles."
+
+# Vaciar los archivos de logs al inicio de cada ejecución
+> $LOG_FILE
+> $SERVICE_STATUS_LOG
+
+function check_service {
+  local SERVER=$1
+  ssh -o StrictHostKeyChecking=no $SERVER "bash -c 'ps -fea | grep -v grep | grep $SERVICE_NAME > /dev/null'"
+  if [ $? -eq 0 ]; then
+    echo "`date`: El servicio $SERVICE_NAME está arriba en el servidor $SERVER" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está arriba en el servidor $SERVER" >> $SERVICE_STATUS_LOG
+  else
+    echo "`date`: El servicio $SERVICE_NAME está abajo en el servidor $SERVER" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está abajo en el servidor $SERVER" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+function check_url {
+  local URL=$1
+  curl -s --head $URL | head -n 1 | grep "HTTP/1.[01] [23].." > /dev/null
+  if [ $? -eq 0 ]; then
+    echo "`date`: La URL $URL está accesible" >> $LOG_FILE
+    echo "`date`: La URL $URL está accesible" >> $SERVICE_STATUS_LOG
+  else
+    echo "`date`: La URL $URL no está accesible" >> $LOG_FILE
+    echo "`date`: La URL $URL no está accesible" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+# Ejecutar funciones para cada servidor
+for SERVER in "${SERVERS[@]}"; do
+  check_service $SERVER
+done
+
+# Verificar URLs
+check_url $URL1
+check_url $URL2
+
+# Enviar correo con los logs usando sendmail
+(
+echo "Subject: $MAIL_SUBJECT"
+echo "To: $MAIL_TO"
+echo "Cc: $MAIL_CC"
+echo ""
+echo "$MAIL_BODY"
+cat $LOG_FILE
+cat $SERVICE_STATUS_LOG
+) | sendmail -t
+
+
+
+######### programacion #############
+
+0 7 * * * /home/sisadmin/check_service_daily.sh
+
+
+################## vi check_service_15min.sh
+
+
+#!/bin/bash
+
+# Servidores a verificar
+SERVERS=("192.168.202.148" "192.168.202.149")
+SERVICE_NAME="java"
+LOG_FILE="/home/sisadmin/sta.log"
+SERVICE_STATUS_LOG="/home/sisadmin/service_status.log"
+URL1="http://192.168.202.148:5050/svi/08/inicio"
+URL2="http://192.168.202.149:5050/svi/08/inicio"
+MAIL_SUBJECT="Resultado de la validación del servicio y URL"
+MAIL_TO="luis.orobio@sisa.com.co"
+MAIL_CC="mgonzale@ccc.org.co,fjaramillo@ccc.org.co"
+MAIL_BODY="La validación del servicio y las URL se ha realizado. Adjunto se encuentran los logs con los detalles."
+
+# Vaciar los archivos de logs al inicio de cada ejecución
+> $LOG_FILE
+> $SERVICE_STATUS_LOG
+
+# Bandera para saber si algún servicio está abajo
+service_down=false
+
+function check_service {
+  local SERVER=$1
+  ssh -o StrictHostKeyChecking=no $SERVER "bash -c 'ps -fea | grep -v grep | grep $SERVICE_NAME > /dev/null'"
+  if [ $? -eq 0 ]; then
+    echo "`date`: El servicio $SERVICE_NAME está arriba en el servidor $SERVER" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está arriba en el servidor $SERVER" >> $SERVICE_STATUS_LOG
+  else
+    service_down=true
+    echo "`date`: El servicio $SERVICE_NAME está abajo en el servidor $SERVER" >> $LOG_FILE
+    echo "`date`: El servicio $SERVICE_NAME está abajo en el servidor $SERVER" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+function check_url {
+  local URL=$1
+  curl -s --head $URL | head -n 1 | grep "HTTP/1.[01] [23].." > /dev/null
+  if [ $? -eq 0 ]; then
+    echo "`date`: La URL $URL está accesible" >> $LOG_FILE
+    echo "`date`: La URL $URL está accesible" >> $SERVICE_STATUS_LOG
+  else
+    echo "`date`: La URL $URL no está accesible" >> $LOG_FILE
+    echo "`date`: La URL $URL no está accesible" >> $SERVICE_STATUS_LOG
+  fi
+}
+
+# Ejecutar funciones para cada servidor
+for SERVER in "${SERVERS[@]}"; do
+  check_service $SERVER
+done
+
+# Verificar URLs
+check_url $URL1
+check_url $URL2
+
+# Enviar correo solo si algún servicio está abajo
+if [ "$service_down" = true ]; then
+  (
+    echo "Subject: $MAIL_SUBJECT"
+    echo "To: $MAIL_TO"
+    echo "Cc: $MAIL_CC"
+    echo ""
+    echo "$MAIL_BODY"
+    cat $LOG_FILE
+    cat $SERVICE_STATUS_LOG
+  ) | sendmail -t
+fi
+
+
+####################  Programacion
+
+*/15 * * * * /home/sisadmin/check_service_15min.sh
+
+
+
+Procedimiento de Configuración de Relación de Confianza entre Servidores
+
+Para establecer una relación de confianza SSH entre los servidores 192.168.202.116, 192.168.202.148, y 192.168.202.149, sigue estos pasos:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######### repetir estos pasos en los servidores que se necesite: #####################
+
+1. Generar una llave SSH en el servidor 192.168.202.148:
+
+ssh-keygen -t rsa -b 2048
+
+
+Sigue las instrucciones en pantalla y guarda la llave en el directorio predeterminado (~/.ssh/id_rsa) =  /home/sisadmin/.ssh/id_rsa
+
+
+
+2. Copiar la llave pública al servidor 192.168.202.116:
+
+sisadmin
+
+ssh-copy-id sisadmin@192.168.202.116
+
+
+Verifica que la llave pública se haya añadido correctamente en el servidor 192.168.202.116:
+
+cat ~/.ssh/authorized_keys
+
+Configura los permisos correctos en el servidor 192.168.202.116:
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+
+ssh sisadmin@192.168.202.116

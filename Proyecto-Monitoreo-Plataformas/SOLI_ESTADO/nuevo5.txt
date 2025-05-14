@@ -1,0 +1,40 @@
+Buenas tardes 
+
+Por favor actualizar en la base de datos de calidad  REGIPRU (192.168.201.211)(PORT = 1821)
+
+los objetos que se encuentran en la siguiente ruta:
+
+\\winvmwapnas01\ComiteCambiosTOP\0_Desa\2025\AH-Proponentes\20250206\objetos
+
+y la aplicación front y back que se encuentran en la siguiente ruta :
+
+ servidor : 192.168.201.139        en la ruta : /home/desaccc/
+
+aplicaciones : ProponentesWebBack. war   y  Proponente.war 
+
+
+
+
+
+control_files = (/u01/oracle/app/oracle/oradata/ERPEXO/control01.ctl, /u01/oracle/app/oracle/fast_recovery_area/ERPEXO/control02.ctl)
+
+
+
+
+ALTER SYSTEM SET control_files = '/u01/oracle/app/oracle/oradata/ERPEXO/control01.ctl', '/u01/oracle/app/oracle/fast_recovery_area/ERPEXO/control02.ctl' SCOPE=BOTH;
+
+
+/u01/oracle/app/oracle/product/11.2.0/dbhome_1/network/admin
+
+
+/u01/oracle/app/oracle/admin/ERPEXO/adump
+
+
+-- Crear un nuevo archivo de datos para el archivo SYSTEM
+ALTER DATABASE CREATE DATAFILE '/u01/oracle/app/oracle/oradata/ERPEXO/system01.dbf' SIZE 500M;
+
+-- Crear un nuevo archivo de datos para el archivo UNDO
+ALTER DATABASE CREATE DATAFILE '/u01/oracle/app/oracle/oradata/ERPEXO/undotbs01.dbf' SIZE 500M;
+
+-- Crear un nuevo archivo de datos para el archivo USERS
+ALTER DATABASE CREATE DATAFILE '/u01/oracle/app/oracle/oradata/ERPEXO/users01.dbf' SIZE 500M;

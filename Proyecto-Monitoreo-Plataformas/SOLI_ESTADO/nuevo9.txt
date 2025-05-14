@@ -1,0 +1,59 @@
+Usar Hints en la Consulta:
+
+
+
+
+2. Crear Estadísticas Actualizadas.
+
+Si la consulta se ha degradado, puede ser por estadísticas desactualizadas. Ejecuta:
+
+
+BEGIN
+   DBMS_STATS.GATHER_TABLE_STATS(OWNNAME => 'UNOEE', TABNAME => 'T253_CO_AUXILIARES');
+   DBMS_STATS.GATHER_TABLE_STATS(OWNNAME => 'UNOEE', TABNAME => 'T285');
+END;
+/
+
+Si el problema persiste, puedes recolectar estadísticas dinámicas:
+
+
+ALTER SESSION SET OPTIMIZER_DYNAMIC_SAMPLING = 4;
+
+
+3. Crear un SQL Profile o Baseline
+
+Si ya sabes que el segundo plan es mejor, puedes crear un SQL Profile para que el optimizador siempre lo use:
+
+
+EXEC DBMS_SQLTUNE.CREATE_SQL_PROFILE(sql_id => '3475327587', name => 'FORZAR_MEJOR_PLAN');
+O usar SQL Plan Baseline:
+
+
+ALTER SESSION SET OPTIMIZER_CAPTURE_SQL_PLAN_BASELINES = TRUE;
+
+
+EXEC DBMS_SQLTUNE.CREATE_SQL_PROFILE(sql_id => '3475327587', name => '3702600987');
+
+
+
+
+
+SELECT /*+ INDEX(T281 PK_T281) INDEX(T285 PK_T285) */
+       -- Resto de la consulta
+FROM UNOEE.T253_CO_AUXILIARES T253
+JOIN UNOEE.T285 T285 ON T253.F253_ID_CIA = T285.F285_ID_CIA
+WHERE T253.F253_IND_ACTIVO_DISPONIBLE <> 0
+  AND (:B2 IS NULL OR (:B2 IS NOT NULL AND T285.F285_ID = :B2));
+  
+
+BEGIN
+   DBMS_SPM.LOAD_PLANS_FROM_CURSOR_CACHE(
+      sql_id => '3475327587',
+      plan_hash_value => 3702600987
+   );
+END;
+/
+
+
+EXEC DBMS_SQLTUNE.CREATE_SQL_PROFILE(sql_id => '3475327587', name => 'OPTIMIZED_PLAN_3702600987');
+

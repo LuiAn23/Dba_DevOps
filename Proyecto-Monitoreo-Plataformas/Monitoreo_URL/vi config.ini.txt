@@ -1,0 +1,17 @@
+[DEFAULT]
+log_file = /home/sisadmin/sta.log
+service_status_log = /home/sisadmin/service_status.log
+mail_subject = Estado de Salud de los servicios y URL
+mail_to = luis.orobio@sisa.com.co
+mail_cc = mgonzale@ccc.org.co
+mail_body = La validación del servicio y las URL se ha realizado. Adjunto se encuentran los logs con los detalles.
+
+[SERVER1]
+ip = 192.168.202.148
+url = http://192.168.202.148:5050/svi/08/inicio
+services = glassfish
+
+[SERVER2]
+ip = 192.168.202.149
+url = http://192.168.202.149:5050/svi/08/inicio
+services = glassfish

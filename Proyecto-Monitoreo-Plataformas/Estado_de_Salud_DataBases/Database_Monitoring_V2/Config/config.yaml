@@ -1,0 +1,57 @@
+# Configuración de servidores Oracle
+origin:
+  ip: 192.168.202.115
+
+instances:
+  - name: PROD1
+    host: 192.168.202.4
+    port: 1521
+    service_name: REGISTRO
+    system_user: system
+    system_password: "${PROD1_PASSWORD}"
+    log_file: /u01/app/oracle/diag/rdbms/registro/REGISTRO/trace/alert_REGISTRO.log
+    ssh_config:
+      user: oracle
+      port: 22
+      use_key: true
+      key_path: /home/sisadmin/.ssh/id_rsa_oracle
+    
+  - name: PROD2
+    host: 192.168.201.2
+    port: 1522
+    service_name: DOCUNET
+    system_user: system
+    system_password: "${PROD2_PASSWORD}"
+    log_file: /u01/app/oracle/diag/rdbms/docunet/DOCUNET/trace/alert_DOCUNET.log
+    ssh_config:
+      user: oracle
+      port: 22
+      use_key: true
+      key_path: /home/sisadmin/.ssh/id_rsa_oracle
+      
+  - name: DEV
+    host: 192.168.201.3
+    port: 1521
+    service_name: ERP
+    system_user: system
+    system_password: "${DEV_PASSWORD}"
+    log_file: /u01/app/oracle/diag/rdbms/erp/ERP/trace/alert_ERP.log
+    ssh_config:
+      user: oracle
+      port: 22
+      use_key: true
+      key_path: /home/sisadmin/.ssh/id_rsa_oracle
+
+# Configuración de correo para reportes
+email:
+  smtp_server: smtp.example.com
+  smtp_port: 587
+  sender: oracle-health@example.com
+  recipients:
+    - luis.orobio@sisa.com.co
+  cc: ""
+  subject: "Reporte de Monitoreo de Bases de Datos"
+  body: "Se adjunta el reporte de Bases de Datos."
+  use_tls: true
+  username: "${EMAIL_USER}"
+  password: "${EMAIL_PASSWORD}"

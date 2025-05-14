@@ -1,0 +1,6 @@
+formulario_rues_final_2_8_RN0819FVFR-20190329172326.pdf
+
+formulario_rues_final_2__FE_8_654852_RN0821CDA0-20210329094132.pdf
+
+cp /pdf/rues/formularios/8/formulario_rues_final_2_8_RN0819FVFR-20190329172326.pdf /tmp
+cp /pdf/rues/formularios/8/formulario_rues_final_2__FE_8_654852_RN0821CDA0-20210329094132.pdf /tmp

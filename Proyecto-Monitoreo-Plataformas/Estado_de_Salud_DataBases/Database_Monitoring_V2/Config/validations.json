@@ -1,0 +1,88 @@
+{
+  "instances": {
+    "REGISTRO": {
+      "validations": {
+        "filesystem": {
+          "script_file": "../Scripts/filesystem_checks.py",
+          "ssh_config": {
+            "host": "192.168.202.4",
+            "user": "oracle",
+            "key_path": "/home/sisadmin/.ssh/id_rsa_oracle"
+          },
+          "filesystems": ["/DataSerp", "/Backup", "/Archivelog"],
+          "max_usage_percent": 92
+        },
+        "tablespaces": {
+          "sql_file": "tablespace_status.sql",
+          "min_free_space_percent": 15,
+          "autoextend": "YES"
+        },
+        "processes": {
+          "sql_file": "process_check.sql",
+          "max_active": 500,
+          "min_max_processes": 1000
+        },
+        "connections": {
+          "sql_file": "connection_check.sql",
+          "max_active": 100
+        }
+      }
+    },
+    "DOCUNET": {
+      "validations": {
+        "filesystem": {
+          "script_file": "../Scripts/filesystem_checks.py",
+          "ssh_config": {
+            "host": "192.168.201.2",
+            "user": "oracle",
+            "key_path": "/home/sisadmin/.ssh/id_rsa_oracle"
+          },
+          "filesystems": ["/DocunetData", "/DocunetBackup"],
+          "max_usage_percent": 92
+        },
+        "tablespaces": {
+          "sql_file": "tablespace_status.sql",
+          "min_free_space_percent": 20,
+          "autoextend": "YES"
+        },
+        "processes": {
+          "sql_file": "process_check.sql",
+          "max_active": 300,
+          "min_max_processes": 800
+        },
+        "connections": {
+          "sql_file": "connection_check.sql",
+          "max_active": 50
+        }
+      }
+    },
+    "ERP": {
+      "validations": {
+        "filesystem": {
+          "script_file": "../Scripts/filesystem_checks.py",
+          "ssh_config": {
+            "host": "192.168.201.3",
+            "user": "oracle",
+            "key_path": "/home/sisadmin/.ssh/id_rsa_oracle"
+          },
+          "filesystems": ["/ErpData", "/ErpBackup"],
+          "max_usage_percent": 92
+        },
+        "tablespaces": {
+          "sql_file": "tablespace_status.sql",
+          "min_free_space_percent": 10,
+          "autoextend": "YES"
+        },
+        "processes": {
+          "sql_file": "process_check.sql",
+          "max_active": 200,
+          "min_max_processes": 500
+        },
+        "connections": {
+          "sql_file": "connection_check.sql",
+          "max_active": 30
+        }
+      }
+    }
+  }
+}

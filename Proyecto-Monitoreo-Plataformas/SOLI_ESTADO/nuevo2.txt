@@ -1,0 +1,35 @@
+Para empezar con el taller, puedes seguir estos pasos:
+
+1. Preparar los Datos
+Crea un conjunto de datos simulado en Excel o en Power BI directamente.
+Debe incluir tablas con información de ventas, productos, distribuidores y regiones.
+Ejemplo de columnas:
+Ventas: ID de venta, Fecha, Producto, Distribuidor, Región, Cantidad, Precio, Ingresos.
+Productos: ID de producto, Nombre, Categoría.
+Distribuidores: ID de distribuidor, Nombre, Región.
+Regiones: ID de región, Nombre.
+
+2. Diseñar el Modelo Multidimensional
+Dimensiones: Producto, Región, Distribuidor, Tiempo.
+Medidas: Ventas totales, Cantidad vendida, Precio promedio, Crecimiento trimestral.
+Jerarquías:
+Tiempo: Año → Trimestre → Mes.
+Ubicación: País → Ciudad.
+Producto: Categoría → Modelo.
+
+3. Construir Relaciones en Power BI
+Conectar las tablas mediante claves foráneas.
+Aplicar filtros cruzados y verificar la cardinalidad adecuada.
+
+4. Crear Visualizaciones en Power BI
+Matriz o Tabla: Para ver ventas por región y producto.
+Gráficos de Barras: Para identificar los productos más vendidos.
+Mapa Geográfico: Para evaluar la efectividad de los distribuidores.
+Gráficos de Líneas: Para analizar el crecimiento trimestral y anual.
+
+5. Documentar el Proceso en Word
+Introducción: Explicar el objetivo del análisis.
+Selección de Datos: Justificar los datos utilizados.
+Diseño del Modelo: Explicar dimensiones, medidas y jerarquías.
+Visualización y Análisis: Interpretar los hallazgos obtenidos en Power BI.
+Si necesitas ayuda con la estructura del documento en Word o con la implementación en Power BI, dime en qué punto quieres enfocarte más. 

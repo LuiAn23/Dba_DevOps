@@ -1,0 +1,16 @@
+Consulta expediente - AWS-WINVMWAPPRD30
+Enlinea - AWS-LNXOVMAPPRD06
+Glassfish (rue)- AWS-COCLOCCCPRDL41
+WEBLOGIC 12 - AWS-LNXOVMAPPRD10
+
+
+William David Molina Cubillos
+3:45 p.m.
+//To check partitioning table is GPT
+$ sudo parted -l
+
+//Check if grub2-pc-modules package is installed
+$ rpm -qa | grep grub2-pc-modules
+
+//Install package
+$ sudo yum install grub2-pc-modules
