@@ -4,7 +4,7 @@ Repositorio profesional con proyectos técnicos de automatización, monitoreo y 
 
 ## 🚀 Sobre este repositorio
 - **Enfoque**: Automatización de procesos IT (DevOps/DBA)
-- **Tecnologías**: Python, Selenium, JMeter, SQL Server, Bash
+- **Tecnologías**: Python, Selenium, JMeter, SQL Server, Bash, Oracle, Postgresql
 - **Objetivo**: Compartir soluciones reutilizables para problemas comunes en administración de sistemas y CI/CD
 
 ## 🔍 Proyectos Destacados
