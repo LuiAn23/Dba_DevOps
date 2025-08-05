@@ -11,5 +11,5 @@ Repositorio profesional con proyectos técnicos de automatización, monitoreo y 
 | #  | Proyecto | Descripción | Tecnologías Clave |
 |----|----------|-------------|-------------------|
 | 1  | [Web Testing Automation](1_Web_Testing_Automation/README.md) | Monitoreo automatizado de disponibilidad web | Python, Selenium, ReportLab |
-| 2  | [Copiado de Archivos](2_Copy_Tool_con_interfaz_grafica/REAME.md) | Busca y copia archivos de direntes rutas | Python, Python 3.8+ con Tkinter |
+| 2  | [Copiado de Archivos](2_Copy_Tool_con_interfaz_grafica/README.md) | Busca y copia archivos de direntes rutas | Python, Python 3.8+ con Tkinter |
 | 3  | [SQL Server Tools](3_SQL_Server_Tools/README.md) | Scripts para administración de bases de datos | T-SQL, PowerShell |
