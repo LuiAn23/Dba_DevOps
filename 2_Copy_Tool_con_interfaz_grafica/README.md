@@ -40,13 +40,12 @@ Amigable para personal no técnico
 
 📌 Código Limpio (sin rutas sensibles)
 python# Rutas de ejemplo - reemplazar con ubicaciones reales
-self.options = [
-    r"\\file-server\documents\forms\folder1",
-    r"\\file-server\documents\forms\folder2", 
-    r"\\file-server\documents\support\main",
-    r"\\file-server\documents\receipts",
-    r"\\file-server\documents\mutations\forms"
-]  
+
+<img width="501" height="618" alt="image" src="https://github.com/user-attachments/assets/81ffedfc-b327-4067-979f-8567210f7dbc" />
+
+
+
+
 
 
 
