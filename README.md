@@ -12,5 +12,5 @@ Repositorio profesional con proyectos técnicos de automatización, monitoreo y 
 |----|----------|-------------|-------------------|
 | 1  | [Web Testing Automation](1_Web_Testing_Automation/README.md) | Monitoreo automatizado de disponibilidad web | Python, Selenium, ReportLab |
 | 2  | [Copiado de Archivos](2_Copy_Tool_con_interfaz_grafica/README.md) | Busca y copia archivos de direntes rutas | Python, Python 3.8+ con Tkinter |
-| 3  | [3_PostgreSQL-Security-Lab/README.md) | Scripts para administración de bases de datos | Postgresql |
+| 3  | [https://github.com/LuiAn23/Dba_DevOps/blob/main/PostgreSQL-Security-Lab/README.md) | Scripts para administración de bases de datos | Postgresql |
 
