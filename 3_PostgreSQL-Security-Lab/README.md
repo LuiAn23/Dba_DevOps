@@ -39,7 +39,13 @@ Usar funciones de encriptación desde la aplicación (no solo SQL).
 <img width="1052" height="245" alt="image" src="https://github.com/user-attachments/assets/c712def1-acc1-4056-a5fb-5a056f03641d" />
 
 
+
+
+
+
+
 <img width="1452" height="251" alt="image" src="https://github.com/user-attachments/assets/8e07ea7e-ef30-4836-8fbf-62f7a0a201fc" />
+
 
 
 
